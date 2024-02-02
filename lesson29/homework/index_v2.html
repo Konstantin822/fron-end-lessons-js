@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Норма -->
+
+    <div class="item">
+        <h4>Name</h4>
+        <input class="inp" type="text">
+        <h4>Age</h4>
+        <input class="inp2" type="number">
+        <button class="btn">Start</button>
+    </div>
+
+    <div class="item">
+        <h5>Result <span class="out"></span></h5>
+    </div>
+
+    <div class="item">
+        <h4>Lenght</h4>
+        <input class="inp3" type="number">
+        <button class="btn2">Calc</button>
+    </div>
+
+    <div class="item">
+        <h5>Perimetr = <span class="out2"></span></h5>
+    </div>
+
+    <script>
+        let name = document.querySelector('.inp')
+        let age = document.querySelector('.inp2')
+        const year = 2024;
+        let btn = document.querySelector('.btn')
+        let out = document.querySelector('.out')
+
+        let lenght = document.querySelector('.inp3')
+        let btn2 = document.querySelector('.btn2')
+        let out2 = document.querySelector('.out2')
+
+        btn.onclick = () => {
+            out.innerHTML = `${name.value} ${year - age.value}`
+        }
+
+        btn2.onclick = () => {
+            out2.innerHTML = `${lenght.value * 4}`
+        }
+    </script>
+</body>
+
+</html>
