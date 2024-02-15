@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="inp1" type="text" name="" id="">
+    <input class="inp2" type="text" name="" id="">
+    <button class="btn">Add</button>
+
+
+    <div class="out"></div>
+    <script>
+        let inp1 = document.querySelector('.inp1')
+        let inp2 = document.querySelector('.inp2')
+
+        let btn1 = document.querySelector('.btn')
+
+        let out = document.querySelector('.out')
+
+        function renderName(name, color) {
+            let title = `<h2 style="color: ${color}">${name}</h2>`
+
+            return title
+
+        }
+
+        let name = ['Sasha', 'Sasha 1', 'Sasha 2', 'Sasha 3', 'Sasha 4']
+
+        for (let i = 0; i < name.length; i++) {
+            if (i == 3) {
+                out.innerHTML += renderName(name[i], "blue")
+                continue
+            }
+            out.innerHTML += renderName(name[i], "red")
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="inp1" type="text" name="" id="">
+    <input class="inp2" type="text" name="" id="">
+    <button class="btn">Add</button>
+
+    <div class="out"></div>
+
+    <script>
+        let btn = document.querySelector('.btn')
+        let inp1 = document.querySelector('.inp1')
+        let inp2 = document.querySelector('.inp2')
+
+        let out = document.querySelector('.out')
+        // function declaration
+        function testFunc() {
+            console.log("test")
+        }
+
+        // function expression
+        let TestFunc = function () {
+            console.log("test 222")
+        }
+
+        // arrow function
+        let arrTest = () => {
+            console.log("test Arrow")
+        }
+
+        // Example 
+        function consoleLog(a, b) {
+            console.log('a + b = ' + (a + b))
+        }
+
+        btn.onclick = () => consoleLog(+inp1.value, +inp2.value)
+
+
+        function testReturn(arr) {
+            return `<h2>${arr}</h2>`
+        }
+
+        out.innerHTML = testReturn("sgsgsg")
+
+    </script>
+</body>
+
+</html>

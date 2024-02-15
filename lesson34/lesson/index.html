@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const array = [] // Array
+        const obj = {} // Object
+
+        // Object 
+        // Ключ: Значение
+        const user = {
+            name: 'Name',
+            age: 1984,
+            isLogin: true,
+            querySelector: function () {
+                console.log("Test")
+            }
+        }
+
+        // user.querySelector()
+        console.log(user.name + " " + user.age)
+
+        console.log(user.isLogin)
+        user.isLogin = false
+        console.log(user.isLogin)
+
+        user.lastName = "Kol" // Добавляем ключ в обьект
+        delete user.lastName
+        console.log(user)
+        if (user.isLogin) {
+            console.log("Hello " + user.name)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select class="sel">
+        <option value="banana">banana</option>
+        <option value="orange">Апельсин</option>
+        <option value="apple">Яблоко</option>
+    </select>
+    <button class="btn1">Press</button>
+    <div class="out1"></div>
+    <script>
+        let item = document.querySelector('.sel')
+        let btn1 = document.querySelector('.btn1')
+
+        btn1.onclick = () => {
+            switch (item) {
+                case 'banana':
+                    console.log("banana 20gr");
+                    break;
+                case 'orange':
+                    console.log("orange 43gr");
+                    break;
+                case 'aple':
+                    console.log("apple 18gr");
+                    break;
+                default:
+                    console.log("Не обрано");
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

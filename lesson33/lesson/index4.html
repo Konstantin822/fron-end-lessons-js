@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="inp1" type="text" name="" id="">
+    <select class="sel">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">x</option>
+        <option value="/">/</option>
+    </select>
+    <input class="inp2" type="text" name="" id="">
+    <button class="btn">Add</button>
+
+
+    <div class="out"></div>
+
+    <script>
+        let inp1 = document.querySelector('.inp1')
+        let inp2 = document.querySelector('.inp2')
+        let sel = document.querySelector('.sel')
+        let btn1 = document.querySelector('.btn')
+        let out = document.querySelector('.out')
+
+        btn1.onclick = () => {
+            out.innerHTML = calc(inp1, inp2, sel.value)
+        }
+
+        function calc(num1, num2, sym) {
+            switch (sym) {
+                case "+":
+                    return `${num1.value} + ${num2.value} = ${+num1.value + +num2.value}`
+                    break;
+                case "-":
+                    return `${num1.value} - ${num2.value} = ${+num1.value - +num2.value}`
+                    break;
+                case "x":
+                    return `${num1.value} * ${num2.value} = ${+num1.value * +num2.value}`
+                    break;
+                case "/":
+                    return `${num1.value} / ${num2.value} = ${+num1.value / +num2.value}`
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

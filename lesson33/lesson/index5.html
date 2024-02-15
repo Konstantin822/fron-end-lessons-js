@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="inp1" type="text" placeholder="login">
+    <input class="inp2" type="password" placeholder="password">
+    <button class="btn">Log In</button>
+
+    <div class="out"></div>
+    <script>
+        // let login = 'admin'
+        let login = ['admin', 'admin 1', 'admin 3', 'admin 4']
+        let pass = '123'
+
+        let inp1 = document.querySelector('.inp1')
+        let inp2 = document.querySelector('.inp2')
+        let btn = document.querySelector('.btn')
+        let out = document.querySelector('.out')
+
+        function checkUser(log, pas) {
+            for (let i = 0; i < login.length; i++) {
+                // if (log == 'admin 3' && pas == pass) 
+                if (log == login[i] && pas == pass) {
+                    out.innerHTML = "Welcome " + log
+                    break;
+                } else {
+                    out.innerHTML = "Try again"
+                }
+            }
+        }
+
+        btn.onclick = () => {
+            checkUser(inp1.value, inp2.value)
+        }
+    </script>
+</body>
+
+</html>

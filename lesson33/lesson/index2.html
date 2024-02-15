@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="inp" type="text">
+    <button class="btn">Start</button>
+
+    <div class="out"></div>
+
+    <script>
+        let inp = document.querySelector('.inp')
+        let out = document.querySelector('.out')
+        let btn = document.querySelector('.btn')
+
+        function renderTitle(name) {
+            return `
+            <h2 class="name">${name.value}</h2>
+            `
+        }
+        btn.onclick = () => {
+            out.innerHTML = ``
+            for (let i = 1; i <= 10; i++) {
+                out.innerHTML += renderTitle(inp)
+            }
+        }
+    </script>
+</body>
+
+</html>
