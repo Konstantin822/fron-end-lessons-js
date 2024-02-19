@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            margin: 5px;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <script>
+        let box = document.querySelector('.box')
+
+        box.onclick = () => {
+            box.classList.toggle('blue')
+        }
+    </script>
+</body>
+
+</html>

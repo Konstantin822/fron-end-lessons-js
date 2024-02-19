@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+        }
+
+        wrap {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="out"></div>
+
+        <button class="show">Show cart</button>
+        <ul class="out2"></ul>
+    </div>
+
+    <script>
+        const out = document.querySelector('.out')
+        const out2 = document.querySelector('.out2')
+
+        const cars = [
+            {
+                img: './img/volkswagen.jpg',
+                brand: 'Volkswagen',
+                model: 'Touran',
+                age: 2003,
+                price: 4700,
+                lenght: 267,
+            },
+            {
+                img: './img/volkswagen.jpg',
+                brand: 'Volkswagen',
+                model: 'Passat',
+                age: 2019,
+                price: 12700,
+                lenght: 106,
+            },
+            {
+                img: './img/volkswagen.jpg',
+                brand: 'Mersedes',
+                model: 'E',
+                age: 2013,
+                price: 22700,
+                lenght: 267,
+            },
+            {
+                img: './img/volkswagen.jpg',
+                brand: 'Mersedes',
+                model: 'S',
+                age: 2015,
+                price: 33700,
+                lenght: 67,
+            },
+            {
+                img: './img/volkswagen.jpg',
+                brand: 'Mazda',
+                model: '6',
+                age: 2010,
+                price: 11700,
+                lenght: 190,
+            },
+            {
+                img: './img/volkswagen.jpg',
+                brand: 'Mazda',
+                model: '3',
+                age: 2006,
+                price: 3700,
+                lenght: 230,
+            },
+        ]
+        let cart = []
+        let btnShow = document.querySelector('.show')
+
+        cars.map(item => {
+            let div = document.createElement('div')
+            // div.innerHTML = item.brand
+
+            let h1 = document.createElement('h1')
+            h1.innerHTML = item.brand
+
+            let btn = document.createElement('button')
+            btn.innerHTML = "Add"
+
+            btn.onclick = () => {
+                cart.push(item)
+                console.log(cart)
+            }
+
+            div.append(h1, btn)
+            out.append(div)
+        })
+
+        btnShow.onclick = () => {
+            cart.map(item => {
+                let li = document.createElement('li')
+                li.innerHTML = item.brand
+
+                out2.append(li)
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>
+        Count + / -
+    </h2>
+    <p>
+        Щоб не було меньше нуля
+    </p>
+    <div class="count">
+        <span class="btnMinus">-</span>
+        <span class="countOut">0</span>
+        <span class="btnPlus">+</span>
+    </div>
+
+    <hr>
+
+    <h2>
+        To Do List
+    </h2>
+
+    <input class='inp' type="text">
+    <button class="btn">add</button>
+    <ol class='out'>
+
+    </ol>
+
+    <div class="count">0</div>
+
+    <hr>
+
+    <h2>
+        Search
+    </h2>
+
+    <input class=inp2 type="text" name="" id="" placeholder="Id">
+    <button class='btn2'>Search</button>
+
+    <h5>Ваш товар: <span class="out2"></span></h5>
+
+    <script>
+        // 1 Task
+        const btnMinus = document.querySelector('.btnMinus')
+        const btnPlus = document.querySelector('.btnPlus')
+        const countOut = document.querySelector('.countOut')
+        let count = 0
+
+        // function counter() {
+        //     if (btnMinus) {
+        //         count--
+        //         countOut.innerHTML = count
+        //     } else if (btnPlus) {
+        //         count++
+        //         countOut.innerHTML = count
+        //     }
+        // }
+
+        // Сделать разные функции
+
+        // btnMinus.onclick = counter
+        // btnPlus.onclick = counter
+
+        btnMinus.onclick = () => {
+            count--
+            countOut.innerHTML = count
+        }
+        btnPlus.onclick = () => {
+            count++
+            countOut.innerHTML = count
+        }
+
+
+        // 2 Task
+        const inp = document.querySelector('.inp')
+        const btn = document.querySelector('.btn')
+        const list = document.querySelector('.out')
+
+        btn.onclick = () => {
+            list.innerHTML += `
+            <li>${inp.value}</li>`
+        }
+
+
+        // 3 Task
+
+        let inp2 = document.querySelector('.inp2')
+        let out = document.querySelector('.out2')
+        let btn2 = document.querySelector('.btn2')
+        const items = [
+            {
+                name: 'Test1',
+                id: 123,
+            },
+            {
+                name: 'Test2',
+                id: 223,
+            },
+            {
+                name: 'Test3',
+                id: 323,
+            },
+            {
+                name: 'Test4',
+                id: 423,
+            },
+
+        ]
+
+        btn2.onclick = () =>
+            items.map(item => {
+                if (inp2.value == item.id) {
+                    out2.innerHTML = item.name
+                }
+            })
+    </script>
+</body>
+
+</html>
