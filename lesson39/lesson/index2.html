@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+
+        .hero {
+            background-color: black;
+            height: 120vh;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .heading {
+            display: flex;
+            align-items: start;
+            flex-direction: column;
+            text-align: left;
+            max-width: 450px;
+            gap: 20px;
+            position: absolute;
+            top: 30%;
+            left: 80px;
+        }
+
+        .earth {
+            width: 1024px;
+            height: 768px;
+            position: absolute;
+            top: 80px;
+            right: 30px;
+            z-index: 1;
+        }
+
+        .cursor {
+            width: 219px;
+            height: 400px;
+            position: absolute;
+            top: 190px;
+            right: 400px;
+            z-index: 2;
+        }
+
+        .doodle1 {
+            width: 124px;
+            height: 124px;
+            position: absolute;
+            bottom: 1px;
+            left: 34%;
+            z-index: 3;
+            transform: rotate(15deg);
+        }
+
+        .doodle2 {
+            width: 124px;
+            height: 124px;
+            position: absolute;
+            top: 40%;
+            left: 38%;
+            z-index: 3;
+        }
+
+        .doodle3 {
+            width: 124px;
+            height: 124px;
+            position: absolute;
+            top: 6%;
+            left: 36%;
+            z-index: 3;
+        }
+
+        .heading__title {
+            color: white;
+            font-size: 50px;
+        }
+
+        .heading__text {
+            color: white;
+            font-size: 20px;
+        }
+
+        .button {
+            background-color: blueviolet;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 46px;
+            padding: 13px 25px;
+            border-radius: 20px;
+            border: 2px solid blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="hero">
+            <div class="container">
+                <div class="draft">
+                    <div class="heading">
+                        <h2 class="heading__title">Lorem, ipsum.</h2>
+                        <p class="heading__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo
+                            accusantium
+                            dolorum harum pariatur ipsa consectetur iste fugiat maxime officia molestiae.</p>
+                        <button class="button">Start</button>
+                    </div>
+                    <img class="earth animation" src="img/planet.png" alt="planet" data-speed="0.2">
+                    <img class="cursor animation" src="img/cursor.png" alt="cursor" data-speed="1">
+                    <img class="doodle1 animation" src="img/doodle-5 5.png" alt="doodle" data-speed="0.8">
+                    <img class="doodle2 animation" src="img/doodle-5 6.png" alt="doodle" data-speed="1.2">
+                    <img class="doodle3 animation" src="img/doodle-4 3.png" alt="doodle" data-speed="1">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let hero = document.querySelector('.hero')
+        let itemAnim = document.querySelectorAll('.animation')
+
+        hero.addEventListener('mousemove', () => {
+            let height = hero.offsetHeight / 2
+
+            itemAnim.forEach(item => {
+                let speed = item.getAttribute('data-speed')
+                item.style.transform = `translate(${event.clientX * speed / 10}px, ${(event.clientY - height) * speed / 10}px)`
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            outline: none;
+        }
+
+        .error {
+            border: 2px solid red;
+        }
+
+        .er {
+            color: red;
+            display: none;
+        }
+
+        .er.vis {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="inp1">
+    <span class="er">error</span>
+    <input type="text" class="inp2">
+    <input class="inp-check" type="checkbox">
+
+    <button class="btn">Test</button>
+
+    <div class="out"></div>
+
+    <script>
+        let inpCheck = document.querySelector('.inp-check')
+        let inp1 = document.querySelector('.inp1')
+        let errM = document.querySelector('.er')
+        let btn = document.querySelector('.btn')
+
+        let out = document.querySelector('.out')
+
+        // Old
+        // btn.onclick = () => {
+        //     console.log(" test 1");
+        // }
+
+        // btn.onclick = () => {
+        //     console.log(" test 2");
+        // }
+
+
+        // New
+        // btn.addEventListener('click', () => { console.log(" test 1"); }, { once: true })
+        btn.addEventListener('click', (event) => {
+            console.log(event);
+        })
+
+        // inp1.addEventListener('change', () => {
+        //     errorM()
+        // })
+
+        // inpCheck.addEventListener('change', () => {
+        //     errorM
+        // })
+
+        // Или так
+        inp1.addEventListener('change', errorM)
+        inpCheck.addEventListener('change', errorM)
+
+        function errorM() {
+            if (inpCheck.checked) {
+                inp1.classList.remove('error')
+                errM.classList.remove('vis')
+            } else {
+                inp1.classList.add('error')
+                errM.classList.add('vis')
+            }
+        }
+
+        inp1.addEventListener('keyup', (event) => {
+            // console.log(event)
+            // errorM
+            // console.log(event.key)
+            out.innerHTML += event.key
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <input type="text">
+    <hr>
+    <label for="ch1">
+        <input id="ch1" type="checkbox">
+        Старше 18 років
+    </label>
+
+    <ol class="out"></ol>
+
+
+    <script>
+        let inp = document.querySelector('input')
+
+
+        let out = document.querySelector('.out')
+
+        let arr = ['Sasha', 'Sveta', 'Olha', 'Vova', "Sasha 2"]
+
+        let arr2 = [
+            {
+                name: "Sasha",
+                age: 22
+            },
+            {
+                name: "Sveta",
+                age: 15
+            },
+            {
+                name: "Olha",
+                age: 33
+            },
+            {
+                name: "Vova",
+                age: 13
+            },
+            {
+                name: "Sasha 2",
+                age: 44
+            },
+        ]
+
+
+        inp.addEventListener('keyup', () => {
+            out.innerHTML = ''
+            arr.map(item => {
+                // if (item.indexOf('ova') >= 0) {
+                //     console.log(item);
+                // }
+
+
+                let lCase = item.toLocaleLowerCase()
+                let valC = inp.value.toLocaleLowerCase()
+
+
+                if (lCase.includes(valC)) {
+                    let li = document.createElement('li')
+                    li.innerHTML = item
+
+                    out.append(li)
+                }
+            })
+        })
+
+    </script>
+</body>
+
+</html>

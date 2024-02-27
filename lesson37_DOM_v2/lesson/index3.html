@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="out"></div>
+
+    <script>
+        let out = document.querySelector('.out')
+
+        const users = [
+            {
+                name: "name 1",
+                age: 22
+            },
+            {
+                name: "name 2",
+                age: 19
+            },
+            {
+                name: "name 3",
+                age: 17
+            },
+            {
+                name: "name 4",
+                age: 33
+            },
+        ]
+
+
+        function createItem(item) {
+            let li = document.createElement('li')
+
+            let span = document.createElement('span')
+            span.innerHTML = item.name
+
+            let b = document.createElement('b')
+            b.innerHTML = `Age: ${item.age}`
+
+            li.append(span, b)
+
+            return li
+        }
+
+        // users.map(item => {
+        //     out.append(createItem(item))
+        // })
+
+        function sort() {
+            out.innerHTML = ''
+            users.map(item => {
+                if (item.age > 15) {
+                    out.append(createItem(item))
+                }
+            })
+        }
+
+        function gender(gen) {
+
+            users.map(item => {
+
+                if (item.gender == gen) {
+                    out.append(createItem(item))
+                }
+            })
+        }
+        gender('Man')
+
+        gender('Woman')
+    </script>
+</body>
+
+</html>

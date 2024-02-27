@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select value="">
+        <option value="en">En</option>
+        <option value="ua">Ua</option>
+    </select>
+
+    <div id="root">
+
+    </div>
+
+    <script>
+
+        const root = document.getElementById('root')
+
+        const select = document.querySelector('select')
+
+        const heroContent = {
+            title: "Hello World Title",
+            description: "SAKJSN ksdjnak sjdnkas jndkas jndak sj",
+            button: 'add'
+        }
+
+        const heroContentUa = {
+            title: "Паліваотівл",
+            description: "фаів афів афів афіваф",
+            button: 'Додати'
+        }
+
+        let sceHero = document.createElement('section')
+        sceHero.classList.add('hero')
+
+        let container = document.createElement('div')
+        container.classList.add('contaiter')
+
+        function createHero(tag, className, text) {
+            let item = document.createElement(tag)
+            item.classList.add(className)
+            item.innerHTML = text
+
+
+            return item
+        }
+
+        sceHero.append(container)
+
+        function usaLang() {
+            container.innerHTML = ''
+            container.append(
+                createHero('h1', 'title', heroContent.title),
+                createHero('p', 'text', heroContent.description),
+                createHero('button', 'btn', heroContent.button),
+            )
+        }
+        usaLang()
+
+
+        function UkraineLang() {
+            container.innerHTML = ''
+            container.append(
+                createHero('h1', 'title', heroContentUa.title),
+                createHero('p', 'text', heroContentUa.description),
+                createHero('button', 'btn', heroContentUa.button),
+            )
+        }
+
+
+        select.onchange = () => {
+            if (select.value == 'en') {
+                usaLang()
+            } else {
+                UkraineLang()
+            }
+        }
+
+        root.append(
+            sceHero
+        )
+    </script>
+</body>
+
+</html>

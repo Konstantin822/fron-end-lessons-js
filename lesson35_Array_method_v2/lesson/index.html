@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>Add</button>
+
+    <div class="out"></div>
+    <div class="cart">0</div>
+    <script>
+        let inp = document.querySelector('input')
+        let btn = document.querySelector('button')
+        let out = document.querySelector('.out')
+        let cart = document.querySelector('.cart')
+
+        let arr2 = [1, 2, 3, 4]
+
+        // Додаюсть Єлементи в масив
+        arr2.push(5)
+        arr2.unshift(0)
+        console.log(arr2);
+
+        // Видаляють Єлементи в масив
+        arr2.shift()
+        arr2.pop()
+
+        cart.innerHTML = arr2.length
+
+        console.log(arr2);
+        btn.onclick = AddItem
+
+        function AddItem() {
+            out.innerHTML = ""
+            arr2.push(inp.value)
+            cart.innerHTML = arr2.length
+
+            arr2.map(item => out.innerHTML += item + "<br>")
+        }
+
+        function RemoveItem() {
+            out.innerHTML = ""
+            arr2.pop()
+            arr2.map(item => out.innerHTML += item + "<br>")
+        }
+
+
+        let obj = {
+            name: 'Sasha',
+            age: 22,
+            isLogin: true
+        }
+
+        console.log(obj);
+
+        obj.isLogin = false
+        obj.lastName = 'Kol'
+
+        console.log(obj);
+        let arr = [1, 2, 2, 3, 5, 4, 5, 6, 7]
+
+        let newArr = new Set(arr)
+
+
+    </script>
+</body>
+
+</html>

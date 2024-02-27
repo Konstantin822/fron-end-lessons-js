@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            background-color: bisque;
+        }
+
+        .wrapper {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box"></div>
+    </div>
+
+    <script>
+        let box = document.querySelector('.box')
+        let wrap = document.querySelector('.wrapper')
+
+
+        let click = false
+        box.addEventListener('click', () => {
+            if (click) {
+                click = false
+                box.classList.add('move')
+                wrap.addEventListener('mousemove', move)
+            } else {
+                click = true
+                box.classList.remove('move')
+                wrap.removeEventListener('mousemove', move)
+            }
+        })
+
+
+        function move(event) {
+            let center = box.offsetHeight / 2
+            box.style.transform = `translate(${event.clientX - center}px, ${event.clientY - center}px)`
+        }
+    </script>
+</body>
+
+</html>
