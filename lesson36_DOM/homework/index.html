@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        .picture {
+            position: relative;
+        }
+
+        .picture img {
+            display: block;
+            position: sticky;
+            top: 20px;
+            width: 100%;
+        }
+
+        .cart {
+            background-color: grey;
+            font-size: 30px;
+            padding: 30px;
+            position: fixed;
+            right: 10px;
+            top: 10px
+        }
+
+        .cart:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="back">Back</button>
+    <div class="wrapper">
+
+        <div class="out"></div>
+        <div class="out2"></div>
+
+        <div class="picture">
+
+        </div>
+    </div>
+    <div class="cart">
+        0
+    </div>
+
+    <script>
+        const out = document.querySelector('.out')
+        const out2 = document.querySelector('.out2')
+        const cart2 = document.querySelector('.cart')
+        const btnBack = document.querySelector('.back')
+        const picture = document.querySelector('.picture')
+
+        const knives = [
+            {
+                img: './img/knife_universal.webp',
+                name: 'Tefal Fresh Kitchen',
+                brand: 'Tefal',
+                lenght: 120,
+                type: 'Universal',
+                bladeMaterial: 'Stainless steel',
+                handleMaterial: 'Plastic',
+                weight: 73,
+            },
+            {
+                img: './img/chef_knife.webp',
+                name: 'Tefal Ultimate',
+                brand: 'Tefal',
+                lenght: 200,
+                type: 'EU chef knife',
+                bladeMaterial: 'Stainless steel',
+                handleMaterial: 'Stainless steel',
+                weight: 210,
+            },
+            {
+                img: './img/bread_knife.webp',
+                name: 'Tefal Ice Force',
+                brand: 'Tefal',
+                lenght: 120,
+                type: 'Bread knife',
+                bladeMaterial: 'Stainless steel',
+                handleMaterial: 'Plastic',
+                weight: 173,
+            },
+            {
+                img: './img/knife_universal.webp',
+                name: 'Tefal Fresh Kitchen',
+                brand: 'Tefal',
+                lenght: 120,
+                type: 'Universal',
+                bladeMaterial: 'Stainless steel',
+                handleMaterial: 'Plastic',
+                weight: 73,
+            },
+            {
+                img: './img/knife_universal.webp',
+                name: 'Tefal Fresh Kitchen',
+                brand: 'Tefal',
+                lenght: 120,
+                type: 'Universal',
+                bladeMaterial: 'Stainless steel',
+                handleMaterial: 'Plastic',
+                weight: 73,
+            },
+            {
+                img: './img/knife_universal.webp',
+                name: 'Tefal Fresh Kitchen',
+                brand: 'Tefal',
+                lenght: 120,
+                type: 'Universal',
+                bladeMaterial: 'Stainless steel',
+                handleMaterial: 'Plastic',
+                weight: 73,
+            }
+        ]
+
+        let cart = []
+
+        function showAll() {
+            out.innerHTML = ''
+            picture.innerHTML = ''
+            out2.innerHTML = ''
+            knives.map(item => {
+                let div = document.createElement('div')
+                div.classList.add('card')
+
+                let title = document.createElement('h1')
+                title.innerHTML = item.name
+
+                let img = document.createElement('img')
+                img.src = item.img
+
+                img.onclick = () => {
+                    out.innerHTML = ''
+                    picture.innerHTML = ''
+                    out2.innerHTML = ''
+                    out.innerHTML = `${item.name}`
+                    picture.innerHTML = `<img src="${item.img}"`
+                    out2.innerHTML = `
+                    <h4>Brand: ${item.brand}</h4>
+                    <h4>Lenght: ${item.lenght} mm</h4>
+                    <h4>Type: ${item.type}</h4>
+                    <h4>Blade material: ${item.bladeMaterial}</h4>
+                    <h4>Blade handle: ${item.handleMaterial}</h4>
+                    <h4>Weight: ${item.weight} gram</h4>
+                    `
+                }
+
+                let btnAddCart = document.createElement('button')
+                btnAddCart.innerHTML = "Add to Cart"
+                btnAddCart.onclick = () => {
+                    cart.push(item)
+
+                    cart2.innerHTML = cart.length
+                }
+
+                div.append(title, img, btnAddCart)
+                out.append(div)
+            })
+        }
+
+        showAll()
+        btnBack.onclick = showAll
+
+        function showCart() {
+            cart.map(item => {
+                out.innerHTML = ''
+                picture.innerHTML = ''
+                out.innerHTML = `${item.name}`
+                picture.innerHTML = `<img src="${item.img}"`
+            })
+        }
+
+        cart2.onclick = showCart
+    </script>
+</body>
+
+</html>

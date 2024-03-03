@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+            font-size: 16px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .out {
+            display: grid;
+            grid-template-columns: repeat(3, 500px);
+            gap: 20px;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 16px;
+            padding: 20px;
+            border: 1px solid lightgreen;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        .card__content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="out">
+        </div>
+    </div>
+    <script>
+
+        let out = document.querySelector('.out')
+
+        function showAll() {
+            fetch('https://rickandmortyapi.com/api/character?page=1')
+                .then(data => data.json())
+                // .then(data => {
+                //     data.data.map(item => {
+                //         console.log(item)
+                //     })
+                // })
+                .then(data => {
+                    console.log(data.results)
+                    render(data.results)
+                })
+                .catch(error => console.log("Ошибка " + error))
+        }
+        showAll()
+
+        function render(data) {
+            data.map(item => {
+                out.append(createItem(item))
+            })
+        }
+
+        function createItem(item) {
+            let div = document.createElement('div')
+            div.classList.add('card')
+
+            let content = document.createElement('div')
+            content.classList.add('card__content')
+
+            let name = document.createElement('h2')
+            name.classList.add('card__name')
+            name.innerHTML = item.name
+
+            let img = document.createElement('img')
+            img.classList.add('card__img')
+            img.src = item.image
+
+            let status = document.createElement('h3')
+            status.classList.add('card__status')
+            status.innerHTML = item.status
+
+            let species = document.createElement('h4')
+            species.classList.add('card__species')
+            species.innerHTML = item.species
+
+            content.append(name, img, status, species)
+            div.append(content)
+
+            return div
+        }
+    </script>
+</body>
+
+</html>

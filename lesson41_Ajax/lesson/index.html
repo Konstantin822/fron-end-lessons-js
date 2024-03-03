@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+            font-size: 16px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 16px;
+            padding: 20px;
+            border: 1px solid lightgreen;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background-color: aquamarine;
+        }
+
+        .active {
+            background-color: aquamarine;
+        }
+
+        .card__rate {
+            color: rgb(99, 181, 17);
+            font-size: 20px;
+        }
+
+        .card__title {
+            font-size: 18px;
+        }
+
+        .card__content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .header {
+            padding: 40px 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header__inp {
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .header__out {
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <ol class="list">
+
+            </ol>
+            <header class="header">
+                <div class="header__field">
+                    <input class="header__inp" type="number" name="" id="">
+                </div>
+                <div class="header__out">
+                </div>
+            </header>
+            <main class="main">
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // fetch().then().then().catch()
+
+        let btn = document.querySelector('.btn')
+        let main = document.querySelector('.main')
+        let out = document.querySelector('.header__out')
+        let inp = document.querySelector('.header__inp')
+
+        let outSave = document.querySelector('.list')
+        let saveRes = []
+
+
+        function showAll() {
+            fetch('https://www.binance.com/bapi/asset/v1/public/asset-service/product/currency')
+                .then(data => data.json())
+                // .then(data => {
+                //     data.data.map(item => {
+                //         console.log(item)
+                //     })
+                // })
+                .then(data => {
+                    console.log(data.data)
+                    render(data.data)
+                })
+                .catch(error => console.log("Ошибка " + error))
+        }
+        showAll()
+
+
+        function render(data) {
+            data.map(item => {
+                main.append(createItem(item))
+            })
+        }
+
+        function createSaveItem(item) {
+            let li = document.createElement('li')
+            li.innerHTML = `${item.res * inp.value}`
+
+            return li
+        }
+
+        function createItem(item) {
+            let div = document.createElement('div')
+            div.classList.add('card')
+            div.addEventListener('click', () => {
+
+                let cards = document.querySelectorAll('.card')
+                cards.forEach(item => {
+                    item.classList.remove('active')
+                })
+
+                let inp = document.querySelector('.header__inp')
+
+                div.classList.add('active')
+                out.innerHTML = `${item.rate * inp.value} ${item.symbol}`
+
+                // let list = document.querySelector('.list')
+                // let li = document.createElement('li')
+                // li.textContent = `${item.rate * inp.value} ${item.symbol}`
+                // list.append(listItem)
+
+                saveRes.push({
+                    res: item.rate * inp.value,
+                    symb: item.symbol
+                })
+                outSave.innerHTML = ''
+                saveRes.map(item => {
+                    outSave.append(createSaveItem(item))
+                })
+            })
+
+            let img = document.createElement('img')
+            img.classList.add('card__img')
+            img.src = item.imageUrl
+
+            let content = document.createElement('div')
+            content.classList.add('card__content')
+
+            let h2 = document.createElement('h2')
+            h2.classList.add('card__title')
+            h2.innerHTML = item.fullName
+
+            let h5 = document.createElement('h5')
+            h5.classList.add('card__rate')
+            h5.innerHTML = item.rate + " " + item.symbol
+
+            content.append(h2, h5)
+            div.append(img, content)
+
+            return div
+        }
+    </script>
+</body>
+
+</html>
