@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            background-color: green;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>https://randomuser.me/api/</h3>
+    <ol>
+        <li>Вивести 10 юзерів</li>
+        <li>По кліку ми зберігаемо </li>
+
+        <li>Показати збереженних</li>
+    </ol>
+
+    <div class="favorit">
+        <div class="count">0</div>
+        <button class="btn">show</button>
+    </div>
+
+    <main>
+
+    </main>
+
+    <script>
+        let btn = document.querySelector('.btn')
+        let out = document.querySelector('main')
+        let count = document.querySelector('.count')
+
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+        // let cart = []
+
+        function getUsers() {
+            fetch('https://randomuser.me/api/')
+                .then(data => data.json())
+                .then(data => {
+                    console.log(data.results[0])
+                    let div = document.createElement('div')
+                    div.classList.add('card')
+
+                    let firstName = document.createElement('h2')
+                    firstName.classList.add('name')
+                    firstName.innerHTML = `First name: ${data.results[0].name.first}`
+
+                    let lastName = document.createElement('h2')
+                    lastName.classList.add('lastName')
+                    lastName.innerHTML = `Last name: ${data.results[0].name.last}`
+
+                    let picture = document.createElement('img')
+                    picture.src = data.results[0].picture.medium
+
+                    div.addEventListener('click', () => {
+                        cart.push({
+                            firstName: data.results[0].name.first,
+                            lastName: data.results[0].name.last,
+                            picture: data.results[0].picture.medium
+                        })
+                        localStorage.setItem('cart', JSON.stringify(cart))
+                        count.innerHTML = cart.length
+                    })
+
+                    div.append(firstName, lastName, picture)
+                    out.append(div)
+
+                })
+                .catch(error => console.log(error))
+        }
+
+        for (let i = 0; i < 10; i++) {
+            getUsers()
+        }
+
+        btn.onclick = () => {
+            out.innerHTML = ''
+            cart.forEach(data => {
+                let div = document.createElement('div')
+                div.classList.add('card')
+
+                let firstName = document.createElement('h2')
+                firstName.classList.add('name')
+                firstName.innerHTML = `First name: ${data.firstName}`
+
+                let lastName = document.createElement('h2')
+                lastName.classList.add('lastName')
+                lastName.innerHTML = `Last name: ${data.lastName}`
+
+                let picture = document.createElement('img')
+                picture.src = data.picture
+
+                div.append(firstName, lastName, picture)
+                out.append(div)
+
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

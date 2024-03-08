@@ -173,16 +173,9 @@
         showAll()
         btnBack.onclick = showAll
 
-        function showCart() {
-            cart.map(item => {
-                out.innerHTML = ''
-                picture.innerHTML = ''
-                out.innerHTML = `${item.name}`
-                picture.innerHTML = `<img src="${item.img}"`
-            })
+        cart2.onclick = () => {
+            console.log(cart);
         }
-
-        cart2.onclick = showCart
     </script>
 </body>
 
