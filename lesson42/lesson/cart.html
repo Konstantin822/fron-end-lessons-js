@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Car Shop</h2>
+
+    <div class="cart">0</div>
+    <div class="out"></div>
+
+    <script>
+        let out = document.querySelector('.out')
+        let cartOut = document.querySelector('.cart')
+
+        let arr = [
+            {
+                name: "Mers",
+                age: 1995
+            },
+            {
+                name: "BMW",
+                age: 2001
+            },
+            {
+                name: "BMW 2",
+                age: 2001
+            },
+            {
+                name: "BMW 3",
+                age: 2001
+            },
+            {
+                name: "BMW 4",
+                age: 2001
+            },
+        ]
+
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+
+        arr.map(item => {
+            let h2 = document.createElement('h2')
+            h2.innerHTML = item.name
+            h2.addEventListener('click', () => {
+                cart.push({
+                    name: item.name,
+                    age: item.age,
+
+                })
+
+                localStorage.setItem('cart', JSON.stringify(cart))
+                cartOut.innerHTML = cart.length
+
+            })
+
+            out.append(h2)
+        })
+
+
+        cartOut.innerHTML = cart.length
+    </script>
+</body>
+
+</html>

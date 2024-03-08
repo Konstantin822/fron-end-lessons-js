@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+
+    </h1>
+    <button>Test</button>
+
+    <script>
+        // Сделать вывод Hello user в h1
+        let h = document.querySelector('h1')
+        let btn = document.querySelector('btn')
+
+        let result = localStorage.getItem('test2') ? localStorage.getItem('test2') : "Empty"
+
+        btn.addEventListener('click', () => {
+            localStorage.setItem('test2', 'Hello user')
+        })
+
+        h.innerHTML = result
+    </script>
+</body>
+
+</html>

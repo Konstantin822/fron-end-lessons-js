@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Test</h1>
+    <input class="inp1" type="text">
+    <span>+</span>
+    <input class="inp2" type="text">
+    <button class="btn">test</button>
+    <div class="out"></div>
+
+
+    <script>
+        let out = document.querySelector('.out')
+
+        let inp1 = document.querySelector('.inp1')
+        let inp2 = document.querySelector('.inp2')
+        let btn = document.querySelector('.btn')
+
+
+        localStorage.setItem('sashaTest', 'Привіт') // Створення КЛюча
+        localStorage.getItem('sashaTest') // отримуемо
+
+        localStorage.clear()
+        localStorage.removeItem('sashaTest1')
+
+
+        let res = localStorage.getItem('sashaTest') ? localStorage.getItem('sashaTest') : 'Немає'
+
+        btn.addEventListener('click', () => {
+
+            localStorage.setItem('sashaTest', `${inp1.value} + ${inp2.value} = ${+inp1.value + +inp2.value}`)
+
+            out.innerHTML = `${inp1.value} + ${inp2.value} = ${+inp1.value + +inp2.value}`
+        })
+
+        out.innerHTML = res
+    </script>
+</body>
+
+</html>
