@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <style>
+        .low {
+            background-color: green;
+        }
+
+        .middle {
+            background-color: yellow;
+        }
+
+        .high {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>To Do List</h2>
+    <input class="inp" type="text">
+    <select class="select">
+        <option value="low">Low</option>
+        <option value="middle">Middle</option>
+        <option value="high">High</option>
+    </select>
+    <button class="btn">Add</button>
+    <ol class="out">
+        <!-- <li><input type="checkbox"><span>Test</span> <button>Х</button></li> -->
+    </ol>
+    <div class="count">0</div>
+
+
+
+    <script>
+        let inp = document.querySelector('.inp')
+        let sel = document.querySelector('.select')
+        let btn = document.querySelector('.btn')
+        let out = document.querySelector('.out')
+        let count = document.querySelector('.count')
+
+        let items = []
+
+        let numCount = 0
+        count.innerHTML = numCount
+
+        //  Приорітети
+        // Low = green
+        // middle = yellow
+        // high = red
+
+        function addItem(item) {
+            let li = document.createElement('li')
+            li.classList.add(item.priority)
+
+            let inp2 = document.createElement('input')
+            inp2.type = 'checkbox'
+            inp2.addEventListener('change', () => {
+                if (inp2.checked) {
+                    li.style.textDecoration = 'line-through'
+                    count.innerHTML = --numCount
+                } else {
+                    li.style.textDecoration = 'none'
+                    count.innerHTML = ++numCount
+                }
+            })
+
+            let span = document.createElement('span')
+            span.innerHTML = item.name
+
+            let edit = document.createElement('button')
+            edit.innerHTML = '✏️'
+            edit.addEventListener('click', () => {
+                span.setAttribute('contenteditable', 'true')
+
+                span.addEventListener('blur', () => {
+                    span.setAttribute('contenteditable', 'false')
+                })
+            })
+
+            let btn2 = document.createElement('button')
+            btn2.innerHTML = 'X'
+            btn2.addEventListener('click', () => {
+                li.remove()
+                if (!inp2.checked) {
+                    count.innerHTML = --numCount
+                }
+            })
+
+            li.append(inp2, span, edit, btn2)
+            out.append(li)
+        }
+
+        btn.addEventListener('click', () => {
+            let inpItem = {
+                name: inp.value,
+                priority: sel.value
+            }
+            items.push(inpItem)
+            addItem(inpItem)
+
+            inp.value = ''
+            count.innerHTML = items.length
+
+            console.log(items);
+        })
+
+    </script>
+</body>
+
+</html>

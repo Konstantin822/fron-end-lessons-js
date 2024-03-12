@@ -174,7 +174,22 @@
         btnBack.onclick = showAll
 
         cart2.onclick = () => {
-            console.log(cart);
+            out.innerHTML = ''
+            picture.innerHTML = ''
+            out2.innerHTML = ''
+            cart.forEach(item => {
+                let div = document.createElement('div')
+                div.classList.add('card')
+
+                let title = document.createElement('h1')
+                title.innerHTML = item.name
+
+                let img = document.createElement('img')
+                img.src = item.img
+
+                div.append(title, img)
+                out.append(div)
+            })
         }
     </script>
 </body>
